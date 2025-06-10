@@ -90,15 +90,19 @@ const container = document.getElementById('ldrContainer');
 const ldrData = Array(NUM_LDRS).fill(null);
 
 // Cria os elementos da interface
-for (let i = 0; i < NUM_LDRS; i++) {
-  const box = document.createElement('div');
-  box.className = 'ldr-box';
-  box.id = `ldr-${i}`;
-  box.innerHTML = `
-    <h3>LDR ${i}</h3>
-    <p><strong>Tempo:</strong> <span id="tempo-${i}">Aguardando...</span></p>
-  `;
-  container.appendChild(box);
+function gerarSaidas() {
+    container.innerHTML = ''
+    for (let i = 0; i < NUM_LDRS; i++) {
+      const box = document.createElement('div');
+      box.className = 'ldr-box';
+      box.id = `ldr-${i}`;
+      box.innerHTML = `
+        <h3>LDR ${i}</h3>
+        <p><strong>Tempo:</strong> <span id="tempo-${i}">Aguardando...</span></p>
+      `;
+
+      container.appendChild(box);
+    }
 }
 
 function copiarDados() {
@@ -179,6 +183,7 @@ function iniciarCaptura() {
 }
 
 function testarTudo() {
+    gerarSaidas();
     fetch('/capturar2')
         .then(res => res.json())
         .then(data => {
@@ -200,6 +205,7 @@ function setLimiar(id) {
 
 // Atualiza a cada 1 segundo
 setInterval(atualizarDados, 1000);
+gerarSaidas();
 </script>
 
 </body>
