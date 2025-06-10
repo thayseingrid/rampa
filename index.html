@@ -8,13 +8,16 @@
       font-family: Arial, sans-serif;
       padding: 20px;
       background: #f5f5f5;
+      display: flex;
+      align-items: center;
+      flex-direction: column;
     }
     h1 {
       color: #333;
     }
     .ldr-container {
-      display: flex;
-      flex-wrap: wrap;
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr 1fr;
       gap: 20px;
     }
     .ldr-box {
@@ -30,10 +33,42 @@
     .ldr-box input {
       width: 60px;
     }
-    button {
+    .button {
       margin-top: 10px;
       padding: 5px 10px;
+      background-color: rgb(50, 255, 50);
     }
+
+    .myButton {
+        margin-top: 50px;
+	box-shadow: 0px 1px 0px 0px #fff6af;
+	background:linear-gradient(to bottom, #ffec64 5%, #ffab23 100%);
+	background-color:#ffec64;
+	border-radius:6px;
+	border:1px solid #ffaa22;
+	display:inline-block;
+	cursor:pointer;
+	color:#333333;
+	font-family:Arial;
+	font-size:15px;
+	font-weight:bold;
+	padding:6px 24px;
+	text-decoration:none;
+	text-shadow:0px 1px 0px #ffee66;
+	width: 320px;
+	height: 70px;
+    }
+
+    .myButton:hover {
+        background:linear-gradient(to bottom, #ffab23 5%, #ffec64 100%);
+        background-color:#ffab23;
+    }
+
+    .myButton:active {
+        position:relative;
+        top:1px;
+    }
+
   </style>
 </head>
 <body>
@@ -41,12 +76,13 @@
 <h1>Leitura dos LDRs</h1>
 <div class="ldr-container" id="ldrContainer"></div>
 
+<!--
 <button onclick="resetSensores()">Resetar Sensores</button>
 <button onclick="comLasers()">Configurar Sensores com Laser</button>
 <button onclick="semLasers()">Configurar Sensores sem Laser</button>
 <button onclick="iniciarCaptura()">Capturar Dados</button>
-<button onclick="copiarDados()">Copiar Dados</button>
-<button onclick="testarTudo()">Testar tudo</button>
+<button onclick="copiarDados()">Copiar Dados</button>-->
+<button onclick="testarTudo()" class="myButton">Capturar Dados</button>
 
 <script>
 const NUM_LDRS = 4;
@@ -61,9 +97,6 @@ for (let i = 0; i < NUM_LDRS; i++) {
   box.innerHTML = `
     <h3>LDR ${i}</h3>
     <p><strong>Tempo:</strong> <span id="tempo-${i}">Aguardando...</span></p>
-    <label>Limiar: <input type="number" id="limiar-${i}" min="0" max="1023" /></label>
-    <br>
-    <button onclick="setLimiar(${i})">Enviar Limiar</button>
   `;
   container.appendChild(box);
 }
